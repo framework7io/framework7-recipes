@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#2196f3">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+  <title>Framework7 Admin Dashboard</title>
+  <link rel="stylesheet" href="https://unpkg.com/framework7/css/framework7.bundle.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/framework7-icons">
+  <style>
+    :root {
+      --f7-panel-transition-duration: 250ms;
+      --f7-bars-bg-color: #fff;
+      --f7-page-bg-color: #f2f3f8;
+      --f7-navbar-border-color: transparent;
+      --f7-navbar-shadow-image: linear-gradient(to bottom,
+        rgba(0,0,0,0.15) 0%,
+        rgba(0,0,0,0.08) 40%,
+        rgba(0,0,0,0.04) 50%,
+        rgba(0,0,0,0) 90%,
+        rgba(0,0,0,0) 100%
+      );
+      --f7-list-item-text-font-size: 13px;
+      --f7-list-item-text-line-height: 18px;
+    }
+    @media (max-width: 1023px) {
+      .panel-left {
+        display: block;
+      }
+      .panel-left ~ .view {
+        margin-left: 44px;
+      }
+      html.with-panel-left-reveal .framework7-root>.view,
+      html.with-panel-left-reveal .views {
+        transform: translate3d(calc(var(--f7-panel-left-width,var(--f7-panel-width)) - 44px),0,0);
+      }
+    }
+    @media (min-width: 1024px) {
+      .panel-open[data-panel="left"] {
+        display: none !important;
+      }
+    }
+    .panel-left.theme-dark {
+      --f7-list-chevron-icon-color: rgba(255,255,255,0.4);
+    }
+    .panel-left .list .icon {
+      color: #fff;
+    }
+    .panel-left .active-link {
+      background-color: var(--f7-theme-color);
+      --f7-list-link-hover-bg-color: var(--f7-theme-color-tint);
+      --f7-list-link-pressed-bg-color: var(--f7-theme-color-shade);
+    }
+
+    .dashboard-cards {
+      --f7-card-margin-vertical: 0px;
+      --f7-card-margin-horizontal: 0px;
+      --f7-card-box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.1);
+    }
+
+
+    .product-image {
+      width: 56px;
+      height: 56px;
+      border-radius: 4px;
+    }
+
+    .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+    }
+
+    @media (min-width: 768px) {
+      .card-content.scrollable {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        height: 260px;
+      }
+    }
+
+    .timeline-item-divider {
+      background: var(--f7-theme-color);
+    }
+    .timeline-item-divider:after,
+    .timeline-item-divider:before {
+      width: 2px;
+    }
+
+    @media (min-width: 768px) {
+      .events-col .card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .events-col .card-content {
+        flex-shrink: 10;
+        min-height: 0;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+    @media (max-width: 767px) {
+      .events-col {
+        height: auto !important;
+      }
+    }
+
+    .tasks-list {
+      --f7-list-item-title-white-space: normal;
+      --f7-list-item-title-font-weight: 500;
+      --f7-badge-size: 14px;
+      --f7-list-item-padding-vertical: 8px;
+    }
+    .tasks-list .category-icon {
+      margin-right: 5px;
+      height: 24px;
+      width: 4px;
+      border-radius: 2px;
+      background: var(--f7-theme-color);
+    }
+
+
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="panel panel-left panel-reveal theme-dark">
+      <div class="view">
+        <div class="page">
+          <div class="list">
+            <ul>
+              <li>
+                <a href="#" class="item-content item-link active-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">data_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Dashboard</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a href="#" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">person_round_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Users</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a href="#" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">folder_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Categories</div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">shopping_cart</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Products</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a href="#" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">bag_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Sales</div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">graph_round_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Analytics</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="view view-main view-init">
+      <div class="page">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left">
+              <a class="link panel-open icon-only" data-panel="left">
+                <i class="icon f7-icons">bars</i>
+              </a>
+            </div>
+            <div class="title">Dashboard</div>
+            <div class="right">
+              <a class="link popover-open" data-popover=".profile-popover">
+                <span class="margin-right-half">Hi, <b>John</b></span>
+                <img src="https://i.pravatar.cc/56?u=9" class="avatar">
+              </a>
+            </div>
+            <div class="title-large">
+              <div class="title-large-text display-flex align-items-center">
+                <i class="icon f7-icons margin-right-half" style="font-size: 24px">data_fill</i>
+                <span>Dashboard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popover profile-popover">
+          <div class="popover-inner">
+            <h3 class="text-align-center">John Doe</h3>
+            <div class="list no-hairlines no-hairlines-between">
+              <ul>
+                <li>
+                  <a href="#" class="item-link item-content">
+                    <div class="item-media">
+                      <i class="icon f7-icons">person_round_fill</i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Profile</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="item-link item-content">
+                    <div class="item-media">
+                      <i class="icon f7-icons">gear_fill</i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">User Settings</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="list no-hairlines no-hairlines-between margin-bottom">
+              <ul>
+                <li>
+                  <a href="#" class="item-link item-content">
+                    <div class="item-media">
+                      <i class="icon f7-icons">exit_fill</i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Logout</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="dashboard-cards">
+            <div class="row margin-horizontal">
+              <div class="col-100 tablet-66 margin-top charts-col">
+                <div class="row">
+                  <div class="col-50">
+                    <div class="card">
+                      <div class="card-header">Calls Plan</div>
+                      <div class="card-content card-content-padding text-align-center">
+                        <div
+                          class="gauge gauge-init"
+                          data-type="circle"
+                          data-value="0.33"
+                          data-value-text="20"
+                          data-label-text="out of 60"
+                          data-value-text-color="#f44336"
+                          data-border-color="#f44336"
+                          data-border-width="30"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-50">
+                    <div class="card">
+                      <div class="card-header">Sales Plan</div>
+                      <div class="card-content card-content-padding text-align-center">
+                        <div
+                          class="gauge gauge-init"
+                          data-type="circle"
+                          data-value="0.75"
+                          data-value-text="$7,500"
+                          data-label-text="out of $10,000"
+                          data-value-text-color="#ff9800"
+                          data-border-color="#ff9800"
+                          data-border-width="30"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-100 margin-top">
+                    <div class="card">
+                      <div class="card-header">Sales Trends</div>
+                      <div class="card-content card-content-padding">
+                        <canvas id="sales-chart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-100 tablet-33 margin-top events-col">
+                <div class="card">
+                  <div class="card-header">Latest Events</div>
+                  <div class="card-content card-content-padding">
+                    <div class="timeline no-margin no-padding">
+                      <div class="timeline-item">
+                        <div class="timeline-item-date">10:00</div>
+                        <div class="timeline-item-divider"></div>
+                        <div class="timeline-item-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor fugiat ipsam hic</div>
+                      </div>
+                      <div class="timeline-item">
+                        <div class="timeline-item-date">11:00</div>
+                        <div class="timeline-item-divider"></div>
+                        <div class="timeline-item-content">Another text goes here</div>
+                      </div>
+                      <div class="timeline-item">
+                        <div class="timeline-item-date">14:45</div>
+                        <div class="timeline-item-divider"></div>
+                        <div class="timeline-item-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor fugiat ipsam hic porro enim, accusamus perferendis, quas commodi alias quaerat eius nemo deleniti. Odio quasi quos quis iure, aperiam pariatur?</div>
+                      </div>
+                      <div class="timeline-item">
+                        <div class="timeline-item-date">16:24</div>
+                        <div class="timeline-item-divider"></div>
+                        <div class="timeline-item-content">One more text here</div>
+                      </div>
+                      <div class="timeline-item">
+                        <div class="timeline-item-date">17:11</div>
+                        <div class="timeline-item-divider"></div>
+                        <div class="timeline-item-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor fugiat ipsam hic</div>
+                      </div>
+                      <div class="timeline-item">
+                        <div class="timeline-item-date">17:28</div>
+                        <div class="timeline-item-divider"></div>
+                        <div class="timeline-item-content">Another text goes here</div>
+                      </div>
+                      <div class="timeline-item">
+                        <div class="timeline-item-date">18:00</div>
+                        <div class="timeline-item-divider"></div>
+                        <div class="timeline-item-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor fugiat ipsam hic porro enim, accusamus perferendis, quas commodi alias quaerat eius nemo deleniti. Odio quasi quos quis iure, aperiam pariatur?</div>
+                      </div>
+                      <div class="timeline-item">
+                        <div class="timeline-item-date">19:19</div>
+                        <div class="timeline-item-divider"></div>
+                        <div class="timeline-item-content">One more text here</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row align-items-stretch margin-horizontal">
+              <div class="col-100 tablet-66 margin-top">
+                <div class="card">
+                  <div class="card-header">
+                    <span>Best Sellers</span>
+                    <div class="segmented">
+                      <a class="button button-small button-outline tab-link-active tab-link" style="width:auto">Today</a>
+                      <a class="button button-small button-outline tab-link" style="width:auto">Week</a>
+                      <a class="button button-small button-outline tab-link" style="width:auto">Month</a>
+                    </div>
+                  </div>
+                  <div class="card-content card-content-padding scrollable">
+                    <div class="list media-list">
+                      <ul>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="product-image" src="https://placeimg.com/112/112/1">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Logo Design</div>
+                              <div class="item-after">12 sales</div>
+                            </div>
+                            <div class="item-text">Design</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="product-image" src="https://placeimg.com/112/112/2">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Website Design</div>
+                              <div class="item-after">10 sales</div>
+                            </div>
+                            <div class="item-text">Design</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="product-image" src="https://placeimg.com/112/112/3">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">PSD to HTML</div>
+                              <div class="item-after">8 sales</div>
+                            </div>
+                            <div class="item-text">Coding</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="product-image" src="https://placeimg.com/112/112/4">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Business Card</div>
+                              <div class="item-after">7 sales</div>
+                            </div>
+                            <div class="item-text">Design</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="product-image" src="https://placeimg.com/112/112/5">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Sketch to HTML</div>
+                              <div class="item-after">5 sales</div>
+                            </div>
+                            <div class="item-text">Coding</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="product-image" src="https://placeimg.com/112/112/5">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Vecotor assets</div>
+                              <div class="item-after">4 sales</div>
+                            </div>
+                            <div class="item-text">Design</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="product-image" src="https://placeimg.com/112/112/6">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">50 Twitter Folowers Pack</div>
+                              <div class="item-after">3 sales</div>
+                            </div>
+                            <div class="item-text">Social</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="product-image" src="https://placeimg.com/112/112/6">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">100 Twitter Folowers Pack</div>
+                              <div class="item-after">2 sales</div>
+                            </div>
+                            <div class="item-text">Social</div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-100 tablet-33 margin-top">
+                <div class="card">
+                  <div class="card-header">New Users</div>
+                  <div class="card-content card-content-padding scrollable">
+                    <div class="list media-list">
+                      <ul>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=1">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">John Doe</div>
+                            </div>
+                            <div class="item-text">john@doe.com</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=2">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Jane Doe</div>
+                            </div>
+                            <div class="item-text">jane@doe.com</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=3">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Kate</div>
+                            </div>
+                            <div class="item-text">kate@athome.app</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=4">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Mary</div>
+                            </div>
+                            <div class="item-text">-</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=5">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Frame Work</div>
+                            </div>
+                            <div class="item-text">frame@work7.com</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=1">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">John Doe</div>
+                            </div>
+                            <div class="item-text">john@doe.com</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=2">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Jane Doe</div>
+                            </div>
+                            <div class="item-text">jane@doe.com</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=3">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Kate</div>
+                            </div>
+                            <div class="item-text">kate@athome.app</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=4">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Mary</div>
+                            </div>
+                            <div class="item-text">-</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=5">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Frame Work</div>
+                            </div>
+                            <div class="item-text">frame@work7.com</div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row align-items-stretch margin-horizontal margin-bottom">
+              <div class="col-100 tablet-33 margin-top">
+                <div class="card">
+                  <div class="card-header">Notifications</div>
+                  <div class="card-content card-content-padding scrollable">
+                    <div class="list media-list">
+                      <ul>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <i class="icon f7-icons text-color-yellow">alert_fill</i>
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Server access error</div>
+                              <div class="item-after">15:45</div>
+                            </div>
+                            <div class="item-text">Lorem ipsum dolor sit amet, consectetuer edipiscing elit</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <i class="icon f7-icons text-color-green">shopping_cart</i>
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">New order received</div>
+                              <div class="item-after">13:20</div>
+                            </div>
+                            <div class="item-text">Lorem ipsum dolor sit amet, consectetuer edipiscing elit</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <i class="icon f7-icons text-color-green">shopping_cart</i>
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">New order received</div>
+                              <div class="item-after">11:11</div>
+                            </div>
+                            <div class="item-text">Lorem ipsum dolor sit amet, consectetuer edipiscing elit</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <i class="icon f7-icons text-color-blue">person_round_fill</i>
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">New user registered</div>
+                              <div class="item-after">10:16</div>
+                            </div>
+                            <div class="item-text">Lorem ipsum dolor sit amet, consectetuer edipiscing elit</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <i class="icon f7-icons text-color-teal">document_text_fill</i>
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">New report uploaded</div>
+                              <div class="item-after">02:00</div>
+                            </div>
+                            <div class="item-text">Lorem ipsum dolor sit amet, consectetuer edipiscing elit</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <i class="icon f7-icons text-color-blue">person_round_fill</i>
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">New user registered</div>
+                              <div class="item-after">Yesterday at 22:56</div>
+                            </div>
+                            <div class="item-text">Lorem ipsum dolor sit amet, consectetuer edipiscing elit</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <i class="icon f7-icons text-color-blue">person_round_fill</i>
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">New user registered</div>
+                              <div class="item-after">Yesterday at 20:10</div>
+                            </div>
+                            <div class="item-text">Lorem ipsum dolor sit amet, consectetuer edipiscing elit</div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-100 tablet-33 margin-top">
+                <div class="card">
+                  <div class="card-header">Tasks</div>
+                  <div class="card-content card-content-padding scrollable">
+                    <div class="list tasks-list">
+                      <ul>
+                        <li>
+                          <label class="item-checkbox item-content">
+                            <div class="item-media">
+                              <span class="category-icon color-blue"></span>
+                            </div>
+                            <input type="checkbox"/>
+                            <i class="icon icon-checkbox"></i>
+                            <div class="item-inner">
+                              <div class="item-title">Prepare docs for meeting</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-checkbox item-content">
+                            <div class="item-media">
+                              <span class="category-icon color-blue"></span>
+                            </div>
+                            <input type="checkbox"/>
+                            <i class="icon icon-checkbox"></i>
+                            <div class="item-inner">
+                              <div class="item-title">Add new HS spectrum module to Color Picker</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-checkbox item-content">
+                            <div class="item-media">
+                              <span class="category-icon color-orange"></span>
+                            </div>
+                            <input type="checkbox"/>
+                            <i class="icon icon-checkbox"></i>
+                            <div class="item-inner">
+                              <div class="item-title">Add year/month selector to Calendar component</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-checkbox item-content">
+                            <div class="item-media">
+                              <span class="category-icon color-green"></span>
+                            </div>
+                            <input type="checkbox"/>
+                            <i class="icon icon-checkbox"></i>
+                            <div class="item-inner">
+                              <div class="item-title">Add new experimental set</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-checkbox item-content">
+                            <div class="item-media">
+                              <span class="category-icon color-pink"></span>
+                            </div>
+                            <input type="checkbox"/>
+                            <i class="icon icon-checkbox"></i>
+                            <div class="item-inner">
+                              <div class="item-title">Add learning mode to instruments set</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-checkbox item-content">
+                            <div class="item-media">
+                              <span class="category-icon color-blue"></span>
+                            </div>
+                            <input type="checkbox"/>
+                            <i class="icon icon-checkbox"></i>
+                            <div class="item-inner">
+                              <div class="item-title">Prepare docs for meeting</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-checkbox item-content">
+                            <div class="item-media">
+                              <span class="category-icon color-blue"></span>
+                            </div>
+                            <input type="checkbox"/>
+                            <i class="icon icon-checkbox"></i>
+                            <div class="item-inner">
+                              <div class="item-title">Add new HS spectrum module to Color Picker</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-checkbox item-content">
+                            <div class="item-media">
+                              <span class="category-icon color-orange"></span>
+                            </div>
+                            <input type="checkbox"/>
+                            <i class="icon icon-checkbox"></i>
+                            <div class="item-inner">
+                              <div class="item-title">Add year/month selector to Calendar component</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-checkbox item-content">
+                            <div class="item-media">
+                              <span class="category-icon color-green"></span>
+                            </div>
+                            <input type="checkbox"/>
+                            <i class="icon icon-checkbox"></i>
+                            <div class="item-inner">
+                              <div class="item-title">Add new experimental set</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-checkbox item-content">
+                            <div class="item-media">
+                              <span class="category-icon color-pink"></span>
+                            </div>
+                            <input type="checkbox"/>
+                            <i class="icon icon-checkbox"></i>
+                            <div class="item-inner">
+                              <div class="item-title">Add learning mode to instruments set</div>
+                            </div>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-100 tablet-33 margin-top">
+                <div class="card">
+                  <div class="card-header">Support Tickets</div>
+                  <div class="card-content card-content-padding scrollable">
+                    <div class="list media-list" style="--f7-list-item-text-max-lines: 5">
+                      <ul>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=1">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">John Doe</div>
+                              <div class="item-after"><span class="badge color-blue">Pending</span></div>
+                            </div>
+                            <div class="item-subtitle">1 hour ago</div>
+                            <div class="item-text">Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=2">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Jane Doe</div>
+                              <div class="item-after"><span class="badge color-green">Closed</span></div>
+                            </div>
+                            <div class="item-subtitle">6 hours ago</div>
+                            <div class="item-text">Sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=3">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Kate</div>
+                              <div class="item-after"><span class="badge color-green">Closed</span></div>
+                            </div>
+                            <div class="item-subtitle">1 day ago</div>
+                            <div class="item-text">Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=4">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Mary</div>
+                              <div class="item-after"><span class="badge color-orange">Issue</span></div>
+                            </div>
+                            <div class="item-subtitle">3 days ago</div>
+                            <div class="item-text">Sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.</div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-media">
+                            <img class="avatar" src="https://i.pravatar.cc/56?u=5">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title-row">
+                              <div class="item-title">Frame Work</div>
+                              <div class="item-after"><span class="badge color-blue">Pending</span></div>
+                            </div>
+                            <div class="item-subtitle">5 days ago</div>
+                            <div class="item-text">Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.</div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://unpkg.com/framework7/js/framework7.bundle.min.js"></script>
+  <script src="https://unpkg.com/chart.js"></script>
+  <script>
+    var $ = Dom7;
+
+    var app = new Framework7({
+      root: '#app',
+      theme: 'aurora',
+      panel: {
+        leftBreakpoint: 1024,
+      },
+    });
+
+    // Sales chart
+    var ctx = document.getElementById('sales-chart').getContext('2d');
+    window.myLine = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+				datasets: [{
+					label: '',
+					backgroundColor: 'rgb(255, 99, 132)',
+					borderColor: 'rgb(255, 99, 132)',
+					fill: true,
+					data: [ 2000, 1000, 5000, 6000, 5500, 8000, 7700 ],
+				}]
+			},
+			options: {
+        legend: {
+          display: false,
+        },
+				responsive: true,
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+      }
+    });
+
+    // Fix col sizes
+    function fixCols() {
+      setTimeout(function() {
+        $('.events-col').css('height', $('.charts-col').height() + 'px');
+      });
+    }
+    fixCols();
+    $(window).on('resize', fixCols);
+
+  </script>
+</body>
+</html>
