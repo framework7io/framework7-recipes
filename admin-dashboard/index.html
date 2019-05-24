@@ -23,19 +23,30 @@
         rgba(0,0,0,0) 90%,
         rgba(0,0,0,0) 100%
       );
+
+    }
+    .aurora {
       --f7-list-item-text-font-size: 13px;
       --f7-list-item-text-line-height: 18px;
+
+      --panel-collapsed-size: 44px;
+    }
+    .ios {
+      --panel-collapsed-size: 58px;
+    }
+    .md {
+      --panel-collapsed-size: 60px;
     }
     @media (max-width: 1023px) {
       .panel-left {
         display: block;
       }
       .panel-left ~ .view {
-        margin-left: 44px;
+        margin-left: var(--panel-collapsed-size);
       }
       html.with-panel-left-reveal .framework7-root>.view,
       html.with-panel-left-reveal .views {
-        transform: translate3d(calc(var(--f7-panel-left-width,var(--f7-panel-width)) - 44px),0,0);
+        transform: translate3d(calc(var(--f7-panel-left-width,var(--f7-panel-width)) - var(--panel-collapsed-size)),0,0);
       }
     }
     @media (min-width: 1024px) {
@@ -46,7 +57,8 @@
     .panel-left.theme-dark {
       --f7-list-chevron-icon-color: rgba(255,255,255,0.4);
     }
-    .panel-left .list .icon {
+    .panel-left .list .icon,
+    .panel-left .treeview .icon {
       color: #fff;
     }
     .panel-left .active-link {
@@ -60,7 +72,6 @@
       --f7-card-margin-horizontal: 0px;
       --f7-card-box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.1);
     }
-
 
     .product-image {
       width: 56px;
@@ -112,11 +123,17 @@
     .tasks-list {
       --f7-list-item-title-white-space: normal;
       --f7-list-item-title-font-weight: 500;
-      --f7-badge-size: 14px;
+    }
+    .aurora .tasks-list {
       --f7-list-item-padding-vertical: 8px;
+      --f7-badge-size: 14px;
+    }
+    .tasks-list .item-media {
+      width: 4px;
+      min-width: 0 !important;
+      margin-right: 5px;
     }
     .tasks-list .category-icon {
-      margin-right: 5px;
       height: 24px;
       width: 4px;
       border-radius: 2px;
@@ -209,6 +226,49 @@
                 </a>
               </li>
             </ul>
+          </div>
+
+          <div class="block block-strong no-padding-horizontal padding-vertical-half">
+            <div class="treeview">
+              <div class="treeview-item">
+                <div class="treeview-item-root treeview-item-toggle">
+                  <div class="treeview-toggle"></div>
+                  <div class="treeview-item-content">
+                    <div class="treeview-item-label">Departments</div>
+                  </div>
+                </div>
+                <div class="treeview-item-children">
+                  <div class="treeview-item">
+                    <a href="#" class="treeview-item-root">
+                      <div class="treeview-item-content">
+                        <div class="treeview-item-label">New York</div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="treeview-item">
+                    <a href="#" class="treeview-item-root">
+                      <div class="treeview-item-content">
+                        <div class="treeview-item-label">London</div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="treeview-item">
+                    <a href="#" class="treeview-item-root">
+                      <div class="treeview-item-content">
+                        <div class="treeview-item-label">Beijing</div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="treeview-item">
+                    <a href="#" class="treeview-item-root">
+                      <div class="treeview-item-content">
+                        <div class="treeview-item-label">Tokyo</div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -381,7 +441,7 @@
                 </div>
               </div>
             </div>
-            <div class="row align-items-stretch margin-horizontal">
+            <div class="row margin-horizontal">
               <div class="col-100 tablet-66 margin-top">
                 <div class="card">
                   <div class="card-header">
@@ -618,7 +678,77 @@
                 </div>
               </div>
             </div>
-            <div class="row align-items-stretch margin-horizontal margin-bottom">
+
+            <div class="row margin-horizontal">
+              <div class="col-100 margin-top">
+                <div class="card data-table">
+                  <div class="card-header">Stats by Department</div>
+                  <div class="card-content">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="label-cell">Department</th>
+                          <th class="numeric-cell">Clients</th>
+                          <th class="numeric-cell">Sales</th>
+                          <th class="numeric-cell">Profit</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="label-cell">New York</td>
+                          <td class="numeric-cell">159</td>
+                          <td class="numeric-cell">24</td>
+                          <td class="numeric-cell">$4,890</td>
+                        </tr>
+                        <tr>
+                          <td class="label-cell">London</td>
+                          <td class="numeric-cell">237</td>
+                          <td class="numeric-cell">37</td>
+                          <td class="numeric-cell">$9,740</td>
+                        </tr>
+                        <tr>
+                          <td class="label-cell">Beijing</td>
+                          <td class="numeric-cell">262</td>
+                          <td class="numeric-cell">24</td>
+                          <td class="numeric-cell">$6,700</td>
+                        </tr>
+                        <tr>
+                          <td class="label-cell">Tokyo</td>
+                          <td class="numeric-cell">120</td>
+                          <td class="numeric-cell">18</td>
+                          <td class="numeric-cell">$3,200</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="data-table-footer">
+                      <div class="data-table-rows-select">
+                        Rows per page:
+                        <div class="input input-dropdown input-with-value">
+                          <select class="input-with-value">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="all">All</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="data-table-pagination">
+                        <span class="data-table-pagination-label">1-5 of 10</span>
+                        <a href="#" class="link disabled">
+                          <i class="icon icon-prev color-gray"></i>
+                        </a>
+                        <a href="#" class="link">
+                          <i class="icon icon-next color-gray"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row margin-horizontal margin-bottom">
               <div class="col-100 tablet-33 margin-top">
                 <div class="card">
                   <div class="card-header">Notifications</div>
@@ -922,6 +1052,7 @@
                 </div>
               </div>
             </div>
+
           </div>
 
         </div>
