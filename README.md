@@ -15,4 +15,8 @@ This repository contains different apps layouts, scripts and other kind of Frame
 * **[Slack](./slack-desktop/)**
 * **[Whatsapp](./whatsapp-desktop/)** by [@pvtallulah](https://github.com/pvtallulah)
 
+## Web
+
+* **[Admin Dashboard](./admin-dashboard/)**
+
 
