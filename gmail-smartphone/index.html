@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#2196f3">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+
+  <title>GMail</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/framework7/css/framework7.bundle.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/framework7-icons">
+  <style>
+    :root {
+      --f7-bars-shadow-bottom-image: none;
+    }
+
+    .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+    }
+
+    .navbar {
+      margin: 24px;
+      width: calc(100% - 2 * 24px);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .navbar .title {
+      width: 100%;
+    }
+
+    .page-content {
+      padding-top: 112px;
+    }
+    
+    /* Limit resizable panel width */
+    .panel {
+      width: 75vw;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+
+    <div class="panel panel-left panel-cover">
+      <div class="page page-accounts">
+        <div class="page-content">
+          <div class="block-title">my@email.com</div>
+          <div class="list no-chevron">
+            <ul>
+              <li>
+                <a href="#" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">drawer_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Inbox</div>
+                    <div class="item-after">
+                      <div class="badge">4</div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">flag_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Flagged</div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">document_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Drafts</div>
+                    <div class="item-after">
+                      <div class="badge">1</div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">paper_plane_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Sent</div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">alert_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Spam</div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">trash_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Trash</div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="item-content item-link">
+                  <div class="item-media">
+                    <i class="icon f7-icons">box_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">Archive</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view view-main view-init">
+      <div class="page page-email-list">
+        <div class="navbar elevation-6">
+          <div class="navbar-inner">
+            <div class="left">
+              <a class="link panel-open icon-only" data-panel="left">
+                <i class="icon f7-icons">bars</i>
+              </a>
+            </div>
+            <div class="title">
+              <!-- Searchbar with auto init -->
+              <form class="searchbar">
+                <div class="searchbar-inner">
+                  <div class="searchbar-input-wrap">
+                    <input type="search" placeholder="Search">
+                    <i class="searchbar-icon"></i>
+                    <span class="input-clear-button"></span>
+                  </div>
+                  <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+                </div>
+              </form>
+            </div>
+            <div class="right">
+              <a class="link popover-open" href="#" data-popover=".profile-popover">
+                <img src="https://i.pravatar.cc/56?u=9" class="avatar">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="page-content">
+          <!-- Searchbar backdrop -->
+          <div class="searchbar-backdrop"></div>
+          <!-- hide-on-search element -->
+          <div class="block block-title searchbar-hide-on-search">
+            <p>INBOX</p>
+          </div>
+          <!-- search target list -->
+          <div class="list list-email media-list">
+            <ul>
+              <li>
+                <label class="item-checkbox item-content">
+                  <input type="checkbox" name="demo-media-checkbox" value="1">
+                  <i class="icon icon-checkbox"></i>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">Facebook</div>
+                      <div class="item-after">17:14</div>
+                    </div>
+                    <div class="item-subtitle">New messages from John Doe</div>
+                    <div class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="item-checkbox item-content">
+                  <input type="checkbox" name="demo-media-checkbox" value="2">
+                  <i class="icon icon-checkbox"></i>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">John Doe (via Twitter)</div>
+                      <div class="item-after">17:11</div>
+                    </div>
+                    <div class="item-subtitle">John Doe (@_johndoe) mentioned you on Twitter!</div>
+                    <div class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="item-checkbox item-content">
+                  <input type="checkbox" name="demo-media-checkbox" value="3">
+                  <i class="icon icon-checkbox"></i>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">Facebook</div>
+                      <div class="item-after">16:48</div>
+                    </div>
+                    <div class="item-subtitle">New messages from John Doe</div>
+                    <div class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="item-checkbox item-content">
+                  <input type="checkbox" name="demo-media-checkbox" value="4">
+                  <i class="icon icon-checkbox"></i>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">John Doe (via Twitter)</div>
+                      <div class="item-after">15:32</div>
+                    </div>
+                    <div class="item-subtitle">John Doe (@_johndoe) mentioned you on Twitter!</div>
+                    <div class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <!-- Nothing found message -->
+          <div class="block searchbar-not-found">
+            <div class="block-inner">Nothing found</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popovers -->
+  <div class="popover profile-popover">
+    <div class="popover-inner">
+      <h3 class="text-align-center">John Doe</h3>
+      <div class="list no-hairlines no-hairlines-between">
+        <ul>
+          <li>
+            <a href="#" class="item-link item-content">
+              <div class="item-media">
+                <i class="icon f7-icons">person_round_fill</i>
+              </div>
+              <div class="item-inner">
+                <div class="item-title">Profile</div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="item-link item-content">
+              <div class="item-media">
+                <i class="icon f7-icons">gear_fill</i>
+              </div>
+              <div class="item-inner">
+                <div class="item-title">User Settings</div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="list no-hairlines no-hairlines-between margin-bottom">
+        <ul>
+          <li>
+            <a href="#" class="item-link item-content">
+              <div class="item-media">
+                <i class="icon f7-icons">exit_fill</i>
+              </div>
+              <div class="item-inner">
+                <div class="item-title">Logout</div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/framework7/js/framework7.bundle.min.js"></script>
+
+  <script>
+    const app = new Framework7({
+      root: '#app',
+      theme: 'md',
+    })
+
+    // create searchbar
+    const searchbar = app.searchbar.create({
+      el: '.searchbar',
+      searchContainer: '.list-email',
+      searchIn: '.item-title',
+      on: {
+        search(sb, query, previousQuery) {
+          console.log(query, previousQuery);
+        }
+      }
+    });
+  </script>
+</body></html>
