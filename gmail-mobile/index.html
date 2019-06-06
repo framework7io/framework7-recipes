@@ -17,7 +17,7 @@
     :root {
       --f7-bars-shadow-bottom-image: none;
       --f7-searchbar-input-padding-horizontal: 24px;
-      --f7-navbar-title-margin-left: 0px;
+      --f7-navbar-margin: 12px;
     }
 
     .avatar {
@@ -27,14 +27,19 @@
     }
 
     .navbar {
-      margin: 24px;
-      width: calc(100% - 2 * 24px);
+      margin: 24px var(--f7-navbar-margin);
+      width: calc(100% - 2 * var(--f7-navbar-margin));
       border-radius: 12px;
-      background: #fff;
+      background: white;
+    }
+
+    .theme-dark .navbar {
+      background-color: black;
     }
 
     .navbar .title {
       width: 100%;
+      margin: 0;
     }
 
     .page-content {
@@ -44,6 +49,22 @@
     /* Limit resizable panel width */
     .panel {
       width: 75vw;
+    }
+
+    /* Demo Color Themes */
+    .demo-theme-picker {
+      cursor: pointer;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      box-sizing: border-box;
+      position: relative;
+    }
+    .demo-theme-picker .checkbox {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
     }
   </style>
 </head>
@@ -287,6 +308,23 @@
           </li>
         </ul>
       </div>
+      <div class="block block-strong">
+        <p>Framework7 comes with 2 main layout themes: Light (default) and Dark:</p>
+        <div class="row">
+          <div class="col-50 bg-color-white demo-theme-picker" onclick="app.methods.setLayoutTheme('light')">
+            <label class="checkbox">
+              <input id="theme-light" type="checkbox">
+              <i class="icon-checkbox"></i>
+            </label>
+          </div>
+          <div class="col-50 bg-color-black demo-theme-picker" onclick="app.methods.setLayoutTheme('dark')">
+            <label class="checkbox">
+              <input id="theme-dark" type="checkbox">
+              <i class="icon-checkbox"></i>
+            </label>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -294,9 +332,41 @@
   <script src="https://unpkg.com/framework7/js/framework7.bundle.min.js"></script>
 
   <script>
+    var globalTheme = 'light';
+
     const app = new Framework7({
       root: '#app',
       theme: 'md',
+      data: function() {
+        return {
+          theme: globalTheme
+        }
+      },
+      methods: {
+        setLayoutTheme: function (theme) {
+          var self = this;
+          var $html = self.$('html');
+          globalTheme = theme;
+          $html.removeClass('theme-dark theme-light').addClass('theme-' + globalTheme);
+          app.data.theme = globalTheme;
+          self.methods.checkTheme();
+        },
+        checkTheme: function () {
+          if(app.data.theme === 'light') {
+            document.getElementById("theme-light").checked = true;
+            document.getElementById("theme-dark").checked = false;
+          } else {
+            document.getElementById("theme-light").checked = false;
+            document.getElementById("theme-dark").checked = true;
+          }
+        }
+      },
+      routes: [
+        {
+          path: '/',
+          componentUrl: './index.html',
+        }
+      ]
     })
 
     // create searchbar
@@ -310,5 +380,7 @@
         }
       }
     });
+
+    app.methods.checkTheme();
   </script>
 </body></html>
