@@ -1,7 +1,7 @@
-<p align="center"><a href="https://framework7.io" target="_blank" rel="noopener noreferrer"><img width="150" src="https://cdn.framework7.io/i/logo.svg" alt="Framework7"></a></p>
+<p align="center"><a href="https://framework7.io" target="_blank" rel="noopener noreferrer"><img width="150" src="https://framework7.io/i/logo.svg" alt="Framework7"></a></p>
 
 <p align="center">
-  <a href="https://www.patreon.com/vladimirkharlampidi"><img src="https://cdn.framework7.io/i/support-badge.png" height="20"></a>
+  <a href="https://www.patreon.com/vladimirkharlampidi"><img src="https://framework7.io/i/support-badge.png" height="20"></a>
 </p>
 
 # Framework7 Recipes
