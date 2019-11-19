@@ -30,11 +30,12 @@
       margin: 24px var(--f7-navbar-margin);
       width: calc(100% - 2 * var(--f7-navbar-margin));
       border-radius: 12px;
-      background: white;
+      overflow: hidden;
+      --f7-navbar-bg-color: #fff;
     }
 
     .theme-dark .navbar {
-      background-color: black;
+      --f7-navbar-bg-color: #000;
     }
 
     .navbar .title {
@@ -81,7 +82,7 @@
               <li>
                 <a href="#" class="item-content item-link">
                   <div class="item-media">
-                    <i class="icon f7-icons">drawer_fill</i>
+                    <i class="icon f7-icons">tray_fill</i>
                   </div>
                   <div class="item-inner">
                     <div class="item-title">Inbox</div>
@@ -104,7 +105,7 @@
               <li>
                 <a href="#" class="item-content item-link">
                   <div class="item-media">
-                    <i class="icon f7-icons">document_fill</i>
+                    <i class="icon f7-icons">doc_fill</i>
                   </div>
                   <div class="item-inner">
                     <div class="item-title">Drafts</div>
@@ -117,7 +118,7 @@
               <li>
                 <a href="#" class="item-content item-link">
                   <div class="item-media">
-                    <i class="icon f7-icons">paper_plane_fill</i>
+                    <i class="icon f7-icons">paperplane_fill</i>
                   </div>
                   <div class="item-inner">
                     <div class="item-title">Sent</div>
@@ -127,7 +128,7 @@
               <li>
                 <a href="#" class="item-content item-link">
                   <div class="item-media">
-                    <i class="icon f7-icons">alert_fill</i>
+                    <i class="icon f7-icons">exclamationmark_triangle_fill</i>
                   </div>
                   <div class="item-inner">
                     <div class="item-title">Spam</div>
@@ -147,7 +148,7 @@
               <li>
                 <a href="#" class="item-content item-link">
                   <div class="item-media">
-                    <i class="icon f7-icons">box_fill</i>
+                    <i class="icon f7-icons">archivebox_fill</i>
                   </div>
                   <div class="item-inner">
                     <div class="item-title">Archive</div>
@@ -163,6 +164,7 @@
     <div class="view view-main view-init">
       <div class="page page-email-list">
         <div class="navbar elevation-6">
+          <div class="navbar-bg"></div>
           <div class="navbar-inner">
             <div class="left">
               <a class="link panel-open icon-only" data-panel="left">
@@ -275,7 +277,7 @@
           <li>
             <a href="#" class="item-link item-content">
               <div class="item-media">
-                <i class="icon f7-icons">person_round_fill</i>
+                <i class="icon f7-icons">person_circle_fill</i>
               </div>
               <div class="item-inner">
                 <div class="item-title">Profile</div>
@@ -299,7 +301,7 @@
           <li>
             <a href="#" class="item-link item-content">
               <div class="item-media">
-                <i class="icon f7-icons">exit_fill</i>
+                <i class="icon f7-icons">square_arrow_right_fill</i>
               </div>
               <div class="item-inner">
                 <div class="item-title">Logout</div>
