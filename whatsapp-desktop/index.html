@@ -157,23 +157,24 @@
 
 <body>
   <div id="app">
-    <div class="panel panel-left panel-reveal">
+    <div class="panel panel-left panel-reveal panel-init" data-visible-breakpoint="1">
       <div class="view view-init">
         <div class="page select-chat-page">
           <div class="navbar">
+            <div class="navbar-bg"></div>
             <div class="navbar-inner">
               <div class="left">
                 <img src="https://cdn.framework7.io/placeholder/people-100x100-1.jpg" alt="profile img">
               </div>
               <div class="right">
                 <a href="#" class="link">
-                  <i class="icon f7-icons">reload</i>
+                  <i class="icon f7-icons">arrow_clockwise</i>
                 </a>
                 <a href="#" class="link">
-                  <i class="icon f7-icons">add</i>
+                  <i class="icon f7-icons">plus</i>
                 </a>
                 <a href="#" class="link">
-                  <i class="icon f7-icons">more_fill</i>
+                  <i class="icon f7-icons">ellipsis_fill</i>
                 </a>
               </div>
             </div>
@@ -779,6 +780,7 @@
     <div class="view view-main view-init">
       <div class="page chat-page">
         <div class="navbar">
+            <div class="navbar-bg"></div>
             <div class="navbar-inner">
               <div class="left">
                 <img src="https://cdn.framework7.io/placeholder/people-100x100-2.jpg" alt="profile img">
@@ -794,10 +796,10 @@
                   <i class="icon f7-icons">search</i>
                 </a>
                 <a href="#" class="link">
-                  <i class="icon f7-icons">attachment</i>
+                  <i class="icon f7-icons">paperclip</i>
                 </a>
                 <a href="#" class="link">
-                  <i class="icon f7-icons">more_fill</i>
+                  <i class="icon f7-icons">ellipsis_fill</i>
                 </a>
               </div>
             </div>
@@ -814,7 +816,7 @@
             </div>
             <div class='send-message-container'>
               <a href="#" class="link">
-                <i class="icon f7-icons">paper_plane</i>
+                <i class="icon f7-icons">paperplane</i>
               </a>
             </div>
           </div>
@@ -863,9 +865,6 @@
     const app = new Framework7({
       root: '#app',
       theme: 'aurora',
-      panel: {
-        leftBreakpoint: 1,
-      },
       routes: [{
         path: '/',
         master: true
