@@ -28,27 +28,15 @@
     .aurora {
       --f7-list-item-text-font-size: 13px;
       --f7-list-item-text-line-height: 18px;
-
-      --panel-collapsed-size: 44px;
+      --f7-panel-collapsed-width: 44px;
     }
     .ios {
-      --panel-collapsed-size: 58px;
+      --f7-panel-collapsed-width: 58px;
     }
     .md {
-      --panel-collapsed-size: 60px;
+      --f7-panel-collapsed-width: 60px;
     }
-    @media (max-width: 1023px) {
-      .panel-left {
-        display: block;
-      }
-      .panel-left ~ .view {
-        margin-left: var(--panel-collapsed-size);
-      }
-      html.with-panel-left-reveal .framework7-root>.view,
-      html.with-panel-left-reveal .views {
-        transform: translate3d(calc(var(--f7-panel-left-width,var(--f7-panel-width)) - var(--panel-collapsed-size)),0,0);
-      }
-    }
+    
     @media (min-width: 1024px) {
       .panel-open[data-panel="left"] {
         display: none !important;
@@ -145,7 +133,7 @@
 </head>
 <body>
   <div id="app">
-    <div class="panel panel-left panel-reveal theme-dark">
+    <div class="panel panel-left panel-reveal panel-init theme-dark" data-visible-breakpoint="1024" data-collapsed-breakpoint="1">
       <div class="view">
         <div class="page">
           <div class="list">
@@ -153,7 +141,7 @@
               <li>
                 <a href="#" class="item-content item-link active-link">
                   <div class="item-media">
-                    <i class="icon f7-icons">data_fill</i>
+                    <i class="icon f7-icons">square_grid_2x2_fill</i>
                   </div>
                   <div class="item-inner">
                     <div class="item-title">Dashboard</div>
@@ -168,7 +156,7 @@
               <li>
                 <a href="#" class="item-content item-link">
                   <div class="item-media">
-                    <i class="icon f7-icons">person_round_fill</i>
+                    <i class="icon f7-icons">person_circle_fill</i>
                   </div>
                   <div class="item-inner">
                     <div class="item-title">Users</div>
@@ -193,7 +181,7 @@
               <li>
                 <a href="#" class="item-content item-link">
                   <div class="item-media">
-                    <i class="icon f7-icons">shopping_cart</i>
+                    <i class="icon f7-icons">cart_fill</i>
                   </div>
                   <div class="item-inner">
                     <div class="item-title">Products</div>
@@ -218,7 +206,7 @@
               <li>
                 <a href="#" class="item-content item-link">
                   <div class="item-media">
-                    <i class="icon f7-icons">graph_round_fill</i>
+                    <i class="icon f7-icons">graph_circle_fill</i>
                   </div>
                   <div class="item-inner">
                     <div class="item-title">Analytics</div>
@@ -276,6 +264,7 @@
     <div class="view view-main view-init">
       <div class="page">
         <div class="navbar">
+          <div class="navbar-bg"></div>
           <div class="navbar-inner">
             <div class="left">
               <a class="link panel-open icon-only" data-panel="left">
@@ -291,7 +280,7 @@
             </div>
             <div class="title-large">
               <div class="title-large-text display-flex align-items-center">
-                <i class="icon f7-icons margin-right-half" style="font-size: 24px">data_fill</i>
+                <i class="icon f7-icons margin-right-half" style="font-size: 24px">square_grid_2x2_fill</i>
                 <span>Dashboard</span>
               </div>
             </div>
@@ -305,7 +294,7 @@
                 <li>
                   <a href="#" class="item-link item-content">
                     <div class="item-media">
-                      <i class="icon f7-icons">person_round_fill</i>
+                      <i class="icon f7-icons">person_circle_fill</i>
                     </div>
                     <div class="item-inner">
                       <div class="item-title">Profile</div>
@@ -769,7 +758,7 @@
                         </li>
                         <li class="item-content">
                           <div class="item-media">
-                            <i class="icon f7-icons text-color-green">shopping_cart</i>
+                            <i class="icon f7-icons text-color-green">cart_fill</i>
                           </div>
                           <div class="item-inner">
                             <div class="item-title-row">
@@ -781,7 +770,7 @@
                         </li>
                         <li class="item-content">
                           <div class="item-media">
-                            <i class="icon f7-icons text-color-green">shopping_cart</i>
+                            <i class="icon f7-icons text-color-green">cart_fill</i>
                           </div>
                           <div class="item-inner">
                             <div class="item-title-row">
@@ -793,7 +782,7 @@
                         </li>
                         <li class="item-content">
                           <div class="item-media">
-                            <i class="icon f7-icons text-color-blue">person_round_fill</i>
+                            <i class="icon f7-icons text-color-blue">person_circle_fill</i>
                           </div>
                           <div class="item-inner">
                             <div class="item-title-row">
@@ -817,7 +806,7 @@
                         </li>
                         <li class="item-content">
                           <div class="item-media">
-                            <i class="icon f7-icons text-color-blue">person_round_fill</i>
+                            <i class="icon f7-icons text-color-blue">person_circle_fill</i>
                           </div>
                           <div class="item-inner">
                             <div class="item-title-row">
@@ -829,7 +818,7 @@
                         </li>
                         <li class="item-content">
                           <div class="item-media">
-                            <i class="icon f7-icons text-color-blue">person_round_fill</i>
+                            <i class="icon f7-icons text-color-blue">person_circle_fill</i>
                           </div>
                           <div class="item-inner">
                             <div class="item-title-row">
