@@ -227,7 +227,7 @@
 </head>
 <body>
   <div id="app">
-    <div class="panel panel-left panel-reveal theme-dark">
+    <div class="panel panel-left panel-reveal theme-dark panel-init" data-visible-breakpoint="1">
       <div class="workspaces">
         <a href="#">
           <div class="workspace-logo">
@@ -251,6 +251,7 @@
       <div class="view view-init">
         <div class="page channels-page">
           <div class="navbar">
+            <div class="navbar-bg"></div>
             <div class="navbar-inner">
               <div class="title">
                 <a href="#" class="link">Framework7 <i class="icon f7-icons">chevron_down</i></a>
@@ -270,7 +271,7 @@
             <div class="block-title">
               <a href="#" class="link">Channels</a>
               <a href="#" class="link">
-                <i class="icon f7-icons">add_round</i>
+                <i class="icon f7-icons">plus_circle</i>
               </a>
             </div>
             <div class="list no-chevron">
@@ -307,7 +308,7 @@
                 <li>
                   <a href="#" class="item-link item-content">
                     <div class="item-media">
-                      <i class="icon f7-icons icon-add">add</i>
+                      <i class="icon f7-icons icon-add">plus_circle</i>
                     </div>
                     <div class="item-inner">
                       <div class="item-title">Add a channel</div>
@@ -362,7 +363,7 @@
                 <li>
                   <a href="#" class="item-link item-content">
                     <div class="item-media">
-                      <i class="icon f7-icons icon-add">add</i>
+                      <i class="icon f7-icons icon-add">plus_circle</i>
                     </div>
                     <div class="item-inner">
                       <div class="item-title">Invite people</div>
@@ -378,6 +379,7 @@
     <div class="view view-main view-init">
       <div class="page chat-page">
         <div class="navbar">
+          <div class="navbar-bg"></div>
           <div class="navbar-inner">
             <div class="title">
               <span>#general</span>
@@ -391,7 +393,7 @@
             </div>
             <div class="right">
               <a href="#" class="link">
-                <i class="icon f7-icons">info_round</i>
+                <i class="icon f7-icons">info_circle</i>
               </a>
               <a href="#" class="link">
                 <i class="icon f7-icons">gear</i>
@@ -404,13 +406,13 @@
                 </div>
               </div>
               <a href="#" class="link">
-                <i class="icon f7-icons">at</i>
+                <i class="icon f7-icons">at_circle</i>
               </a>
               <a href="#" class="link">
                 <i class="icon f7-icons">star</i>
               </a>
               <a href="#" class="link">
-                <i class="icon f7-icons">more_vertical_fill</i>
+                <i class="icon f7-icons">ellipsis_vertical</i>
               </a>
             </div>
           </div>
@@ -534,9 +536,6 @@
     const app = new Framework7({
       root: '#app',
       theme: 'aurora',
-      panel: {
-        leftBreakpoint: 1,
-      },
       routes: [
         {
           path: '/',
