@@ -9,7 +9,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
   <title>Slack</title>
   <link rel="icon" href="https://cfr.slack-edge.com/cebaa/img/icons/favicon-32.png">
-  <link rel="stylesheet" href="https://unpkg.com/framework7/css/framework7.bundle.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/framework7/framework7-bundle.min.css">
   <link rel="stylesheet" href="https://unpkg.com/framework7-icons">
   <style>
     :root {
@@ -87,6 +87,8 @@
       --f7-list-bg-color: transparent;
       --f7-list-border-color: transparent;
       --f7-list-item-border-color: transparent;
+      --f7-list-item-min-height: 32px;
+      --f7-list-item-padding-vertical: 4px;
       --f7-block-title-font-size: 16px;
       --f7-block-title-text-color: rgba(255,255,255,0.7);
       --f7-block-title-font-weight-color: 500;
@@ -135,12 +137,13 @@
       --f7-searchbar-input-border-width: 1px;
       --f7-searchbar-input-font-size: 16px;
       --f7-searchbar-input-border-radius: 6px;
+      --f7-searchbar-input-bg-color: #fff;
       --f7-messagebar-height: 68px;
       --f7-messagebar-textarea-height: 44px;
       --f7-messagebar-textarea-border: 2px solid #616061;
       --f7-messagebar-textarea-border-radius: 6px;
       --f7-messagebar-textarea-font-size: 16px;
-      --f7-messagebar-textarea-padding: 12px;
+      --f7-messagebar-textarea-padding: 8px 12px;
 
       --f7-message-avatar-size: 38px;
       --f7-message-avatar-border-radius: 6px;
@@ -531,10 +534,10 @@
 
 
   </div>
-  <script src="https://unpkg.com/framework7/js/framework7.bundle.min.js"></script>
+  <script src="https://unpkg.com/framework7/framework7-bundle.min.js"></script>
   <script>
     const app = new Framework7({
-      root: '#app',
+      el: '#app',
       theme: 'aurora',
       routes: [
         {

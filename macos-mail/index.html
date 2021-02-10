@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#2196f3">
   <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
   <title>Mail</title>
-  <link rel="stylesheet" href="https://unpkg.com/framework7/css/framework7.bundle.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/framework7/framework7-bundle.min.css">
   <link rel="stylesheet" href="https://unpkg.com/framework7-icons">
   <style>
     :root {
@@ -19,10 +19,22 @@
       --f7-button-hover-bg-color: #f8f8f8;
       --f7-searchbar-input-border-color: #ccc;
       --f7-searchbar-input-border-width: 1px;
-      --f7-searchbar-input-height: 22px;
+      --f7-searchbar-inline-input-height: 22px;
+      --f7-searchbar-inline-input-border-radius: 4px;
+      --f7-searchbar-inline-input-font-size: 12px;
+      --f7-searchbar-input-bg-color: #fff;
+      --f7-searchbar-inline-input-padding-horizontal: 20px;
       --f7-appbar-extra-offset: 24px;
       --f7-appbar-bg-color: #e3e3e3;
+      --f7-button-border-radius: 4px;
+      --f7-button-small-outline-border-width: 1px;
+      --f7-button-small-height: 24px;
+      --f7-button-small-text-transform: none;
+      --f7-button-small-font-size: 12px;
+      --f7-chip-height: 20px;
+      --f7-chip-padding-horizontal: 6px;
     }
+
 
     /* Buttons */
     .button {
@@ -38,6 +50,12 @@
     /* Top Appbar */
     .appbar .button {
       display: flex;
+    }
+    .searchbar .icon {
+      width: 14px;
+    }
+    .searchbar .icon:after {
+      font-size: 14px;
     }
     .appbar-small {
       --f7-appbar-height: 24px;
@@ -70,6 +88,10 @@
       --f7-list-item-title-font-size: 14px;
 
       --f7-block-title-font-size: 12px;
+    }
+    .page-accounts .list .f7-icons {
+      font-size: 18px;
+      opacity: 0.55;
     }
     /* Email List Page */
     .page-email-list {
@@ -450,10 +472,10 @@
 
     </div>
   </div>
-  <script src="https://unpkg.com/framework7/js/framework7.bundle.min.js"></script>
+  <script src="https://unpkg.com/framework7/framework7-bundle.min.js"></script>
   <script>
     const app = new Framework7({
-      root: '#app',
+      el: '#app',
       theme: 'aurora',
       routes: [
         {
