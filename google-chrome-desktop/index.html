@@ -8,17 +8,23 @@
   <meta name="theme-color" content="#2196f3">
   <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
   <title>Chrome</title>
-  <link rel="stylesheet" href="https://unpkg.com/framework7@6.0.1/framework7-bundle.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/framework7/framework7-bundle.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
+    :root {
+      --f7-list-item-border-color: transparent;
+      --f7-input-focused-border-color: transparent;
+    }
     .appbar {
       --f7-appbar-height: 42px;
       --f7-appbar-link-color: #333;
+      --f7-toolbar-font-size: 14px;
       --f7-toolbar-bg-color: #e3e3e3;
       --f7-tabbar-link-active-bg-color: #fff;
       --f7-tabbar-link-inactive-bg-color: transparent;
       --f7-toolbar-height: var(--f7-appbar-height);
       --f7-tabbar-link-active-color: #333;
+      --f7-tabbar-link-active-border-color: transparent;
     }
     .appbar a.tab-link {
       width: 240px;
@@ -250,10 +256,10 @@
 
     </div>
   </div>
-  <script src="https://unpkg.com/framework7@6.0.1/framework7-bundle.min.js"></script>
+  <script src="https://unpkg.com/framework7/framework7-bundle.min.js"></script>
   <script>
     const app = new Framework7({
-      root: '#app',
+      el: '#app',
       theme: 'aurora',
     });
   </script>
