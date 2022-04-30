@@ -334,7 +334,7 @@
   <script src="https://unpkg.com/framework7/framework7-bundle.min.js"></script>
 
   <script>
-    $ = Dom7;
+    var $ = Dom7;
     var globalTheme = 'light';
     let theme = globalTheme;
 
@@ -358,7 +358,7 @@
     }
     
     const checkTheme = () => {
-      if(theme === 'light') {
+      if (theme === 'light') {
         document.getElementById("light").checked = true;
         document.getElementById("dark").checked = false;
       } else {
